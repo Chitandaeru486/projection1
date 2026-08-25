@@ -25,10 +25,13 @@ class NodePDFToMD(NodeBase):
         # 判断路径
         pdf_path=state.get("pdf_path")
         pdf_path_file_obj=Path(pdf_path)
+        # 判断路劲正确
         local_dir_obj = self.check_path(pdf_path, pdf_path_file_obj, state)
+        # 获取batch_id
         batch_id, total_time, urls = self.submmit_file(pdf_path_file_obj)
+        # 获取下载地址url
         urls = self.zip_url(batch_id, total_time, urls)
-
+        # 解压压缩包并改名
         unzip_file_path_obj, zip_file_obj = self.load_unzip(local_dir_obj, pdf_path_file_obj, urls)
 
         return self.md_file(pdf_path_file_obj, unzip_file_path_obj, zip_file_obj)
