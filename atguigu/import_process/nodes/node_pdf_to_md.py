@@ -1,15 +1,13 @@
 # atguigu/import_process/nodes/node_pdf_to_md.py
 import shutil
 import time
-
-
 from pathlib import Path
 from typing import Any
 from zipfile import ZipFile
-
-from atguigu.config.config import Config
+from atguigu.config.config import Config, MinioClientConfig
 from atguigu.import_process.base import NodeBase
 from atguigu.import_process.state import ImportGraphState
+from atguigu.tool import creat_minio_client
 from atguigu.tool.logger import logger
 import requests
 
