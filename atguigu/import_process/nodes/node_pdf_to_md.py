@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 from typing import Any
 from zipfile import ZipFile
-from atguigu.config.config import Config, MinioClientConfig
+from atguigu.config.config import MineruConfig, MinioClientConfig
 from atguigu.import_process.base import NodeBase
 from atguigu.import_process.state import ImportGraphState
 from atguigu.tool import creat_minio_client
@@ -67,7 +67,7 @@ class NodePDFToMD(NodeBase):
 
     def zip_url(self, batch_id: str | Any, total_time: int, urls) -> Any:
         while True:
-            token = f'{Config().mineru_token}'
+            token = f'{MineruConfig().mineru_token}'
             batch_id = f'{batch_id}'
             url = f"https://mineru.net/api/v4/extract-results/batch/{batch_id}"
             header = {
@@ -107,7 +107,7 @@ class NodePDFToMD(NodeBase):
         return urls
 
     def submmit_file(self, pdf_path_file_obj: Path) -> tuple[Any, int, Any]:
-        token = f'{Config().mineru_token}'
+        token = f'{MineruConfig().mineru_token}'
         url = "https://mineru.net/api/v4/file-urls/batch"
         header = {
             "Content-Type": "application/json",

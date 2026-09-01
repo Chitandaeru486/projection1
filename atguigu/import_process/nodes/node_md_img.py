@@ -53,7 +53,9 @@ class NodeMDImg(NodeBase):
         image_load_url_list = self.upload_images_to_minio(image_summary_list)
         # sub替换md文件图片的注释,并生成新md文件
         md_content, new_md_path = self.sub_creat_new_md(image_load_url_list, md_content, md_path_mdj)
-        return md_content, new_md_path
+        return {
+            "md_content":md_content,
+            "new_md_path":new_md_path}
 
 
 
